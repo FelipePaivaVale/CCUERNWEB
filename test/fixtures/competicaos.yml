@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  jogo: one
+  data_inicio: 2025-06-07
+  data_fim: 2025-06-07
+  formato: MyString
+  status: MyString
+
+two:
+  nome: MyString
+  jogo: two
+  data_inicio: 2025-06-07
+  data_fim: 2025-06-07
+  formato: MyString
+  status: MyString
