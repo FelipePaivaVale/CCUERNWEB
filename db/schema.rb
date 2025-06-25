@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_07_053049) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_25_032726) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_053049) do
     t.index ["jogo_id"], name: "index_competicaos_on_jogo_id"
   end
 
+  create_table "equipes", force: :cascade do |t|
+    t.string "nome", null: false
+    t.bigint "competicao_id", null: false
+    t.bigint "capitao_id", null: false
+    t.string "status", default: "ATIVO", null: false
+    t.index ["capitao_id"], name: "index_equipes_on_capitao_id"
+    t.index ["competicao_id"], name: "index_equipes_on_competicao_id"
+  end
+
   create_table "jogos", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
@@ -36,5 +45,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_053049) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "usuarios", force: :cascade do |t|
+    t.string "nome", null: false
+    t.string "email", null: false
+    t.string "senha", null: false
+    t.string "tipo", default: "ALUNO", null: false
+    t.string "departamento"
+    t.string "esporte"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_usuarios_on_email", unique: true
+  end
+
   add_foreign_key "competicaos", "jogos"
+  add_foreign_key "equipes", "competicaos"
+  add_foreign_key "equipes", "usuarios", column: "capitao_id"
 end
