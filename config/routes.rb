@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :competicao 
       resources :usuario
       resources :equipe
+      resources :jogo
+
     end
   end
 end
